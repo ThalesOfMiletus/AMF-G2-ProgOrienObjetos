@@ -1,120 +1,23 @@
+{% extends 'base.html' %}
 {% load embed_video_tags %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSnNades - Ancient</title>
-    <style>
-        @font-face {
-            font-family: 'speed';
-            src: url(csnnades\site_csnnades\templates\fonts\HighSpeed.ttf) format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-        *{
-            font-family: 'speed';
-        }
-        h1 {
-            color: #4CAF50;
-            margin: 0;
-            font-size: 4.5em;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        body {           
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            text-align: center;
-            background-color: #333;
-            padding: 20px;
-            color: #fff;
-        }
-        p {
-            color: #555;
-            font-size: 1.1em;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        a {
-            color: #1E90FF;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 10px;
-        }
-        a:hover {
-            color: #0D47A1;
-        }
-        main {
-            /* Adicionando uma borda e espaçamento interno aos elementos de vídeo */
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+{% block content %}
 
-        h2 {
-            /* Adicionando um fundo sutil para destacar os títulos */
-            background-color: #f2f2f2;
-            padding: 8px;
-            border-radius: 4px;
-        }
-
-        /* Estilo para os vídeos */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* Proporção 16:9 para manter a consistência */
-            overflow: hidden;
-        }
-
-        .video-container iframe, .video-container object, .video-container embed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Estilo para os links */
-        a.video-link {
-            display: block;
-            margin-top: 10px;
-            color: #1E90FF;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease; /* Transição suave da cor ao passar o mouse */
-        }
-
-        a.video-link:hover {
-            color: #0D47A1;
-        }
-    </style>
-</head>
 <body>
 
     <header>
         <h1>CSnNades - Ancient</h1>
+        <a href="home">Voltar para a Página Inicial</a>
         <p>Explore estratégias, dicas e vídeos sobre o mapa Ancient no Counter-Strike.</p>
     </header>
 
     <main>
-        <h2>Visão Geral</h2>
-        <p>O Ancient é um mapa recente que oferece novas experiências de jogo. Compreenda as dinâmicas deste mapa e aprimore suas habilidades táticas.</p>
 
-        <h2>Estratégias</h2>
-        <p>Descubra estratégias eficazes para ambos os lados, adaptando-se às peculiaridades do Ancient para obter vantagens estratégicas.</p>
-        <a class="map-link" href="{% url 'cadastrar_granada' mapa_slug='Ancient' %}"><p>Adicionar Granada</p></a>
+        <h2>Visão Geral</h2>
+        <p>O mapa Ancient é conhecido por ser um mapa moderno e desafiador, com oportunidades ligeiramente favoráveis aos terroristas. É um mapa novo, lançado em 2022, e ainda está ganhando popularidade no cenário competitivo.</p>
+
+        <a class="map-link" href="{% url 'cadastrar_granada' mapa_slug='Ancient' %}">
+            <button class="custom-button">Adicionar Granada</button>
+        </a>
         <h2>Smokes</h2>
         {% for granada in granadas %}
         {% if granada.tipo_granada == 'Smoke' %}
@@ -122,7 +25,7 @@
         <div class="video-container">
             {% video granada.link 'small' %}
         </div>
-        
+
         {% endif %}
         {% endfor %}
 
@@ -150,8 +53,9 @@
         {% endif %}
         {% endfor %}
 
-        <a href="home">Voltar para a Página Inicial</a>
     </main>
 
 </body>
+{% endblock %}
+
 </html>
